@@ -7,6 +7,7 @@
     "dev": "sequelize db:migrate && nodemon --exec babel-node api/app.js",
     "db:migrate": "sequelize db:migrate",
     "build:dev": "rm -rf build && webpack --mode production",
+    "start": "sequelize db:migrate && nodemon --exec babel-node api/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

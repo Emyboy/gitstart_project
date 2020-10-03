@@ -8,13 +8,12 @@
   },
   "scripts": {
     "dev": "sequelize db:migrate && nodemon --exec babel-node api/app.js",
-    "test": "npm run db:reset --env test && sequelize db:seed:undo:all --env test && npm run seed --env test && npm run test:unit",
+    "test": "npm run db:reset --env test && npm run test:unit",
     "db:reset": "sequelize db:migrate:undo:all --env test && npm run db:migrate --env test",
     "test:unit": "NODE_ENV=test nyc --require @babel/register  mocha --recursive './api/**/*.test.js' --timeout 2000 --exit",
     "db:migrate": "sequelize db:migrate",
     "build:dev": "rm -rf build && webpack --mode production",
-    "start": "sequelize db:migrate && nodemon --exec babel-node api/app.js",
-    "seed": "sequelize db:seed:all --env test"
+    "start": "sequelize db:migrate && nodemon --exec babel-node api/app.js"
   },
   "repository": {
     "type": "git",

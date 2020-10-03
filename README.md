@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Emyboy/gitstart_project.svg?branch=develop)](https://travis-ci.org/Emyboy/gitstart_project)
+
 ### gitstart_project
 <p>Project For Gitstart</p>
 

@@ -4,7 +4,8 @@
   "description": "Project For Gitstart",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node api/app.js",
+    "dev": "sequelize db:migrate && nodemon --exec babel-node api/app.js",
+    "db:migrate": "sequelize db:migrate",
     "build": "rm -rf build && webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -43,5 +44,8 @@
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0"
   }
 }

@@ -1,6 +1,7 @@
 import express from 'express';
 import socketio from 'socket.io';
 import path from 'path';
+import db from './database/config/config';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -28,9 +29,9 @@ app.get('/api', (req, res) => {
     });
 });
 
-app.use((req, res) => res.status(404).send({ status: 404, error: res.__('Route %s not found', req.url) }));
+app.use((req, res) => res.status(404).send({ status: 404, error: res.send('Route %s not found', req.url) }));
 
-app.use((err, req, res) => res.status(500).send({ status: 500, error: res.__('server error') }));
+app.use((err, req, res) => res.status(500).send({ status: 500, error: res.send('server error') }));
 
 export default app;
 

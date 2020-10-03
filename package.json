@@ -3,19 +3,25 @@
   "version": "1.0.0",
   "description": "Project For Gitstart",
   "main": "index.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "dev": "sequelize db:migrate && nodemon --exec babel-node api/app.js",
+    "test": "npm run db:reset --env test && sequelize db:seed:undo:all --env test && npm run seed --env test && npm run test:unit",
+    "db:reset": "sequelize db:migrate:undo:all --env test && npm run db:migrate --env test",
+    "test:unit": "NODE_ENV=test nyc --require @babel/register  mocha --recursive './api/**/*.test.js' --timeout 2000 --exit",
     "db:migrate": "sequelize db:migrate",
     "build:dev": "rm -rf build && webpack --mode production",
     "start": "sequelize db:migrate && nodemon --exec babel-node api/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "seed": "sequelize db:seed:all --env test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Emyboy/gitstart_project.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ifeora S. Chukwuemeka",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Emyboy/gitstart_project/issues"
@@ -39,6 +45,7 @@
     "jsonwebtoken": "^8.5.1",
     "mocha": "^8.1.3",
     "nodemon": "^2.0.4",
+    "nyc": "^15.1.0",
     "pg": "^8.3.3",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",

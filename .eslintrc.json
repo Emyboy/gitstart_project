@@ -1,46 +1,67 @@
 {
+    "root": true,
+    "extends": "airbnb-base",
     "env": {
-        "browser": true,
-        "jest": true,
-        "es6": true
+        "node": true,
+        "es6": true,
+        "mocha": true
     },
-    "globals": {
-        "cy": true
-    },
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
-    },
-    "extends": [
-        "airbnb"
-    ],
     "rules": {
-        "react/jsx-filename-extension": [
-            1,
+        "linebreak-style": "one-var",
+        "one-var": 0,
+        "one-var-declaration-per-line": 0,
+        "new-cap": 0,
+        "consistent-return": 0,
+        "no-param-reassign": 0,
+        "comma-dangle": 0,
+        "arrow-parens": "off",
+        "curly": [
+            "error",
+            "multi-line"
+        ],
+        "import/no-unresolved": [
+            2,
             {
-                "extensions": [
-                    ".js",
-                    ".jsx"
+                "commonjs": true
+            }
+        ],
+        "no-shadow": [
+            "error",
+            {
+                "allow": [
+                    "req",
+                    "res",
+                    "err"
                 ]
             }
         ],
-        "import/no-named-as-default": "warn",
-        "jsx-a11y/anchor-is-valid": "off",
-        "react/prop-types": "off",
-        "no-debugger": "off",
-        "no-undef": "warn",
-        "no-unused-vars": "warn",
-        "no-trailing-spaces": "warn",
-        "max-len": "warn",
-        "arrow-body-style": "warn",
-        "arrow-parens": "off",
-        "no-console": "off",
-        "comma-dangle": "off",
-        "no-nested-ternary": "off"
-    },
-    "root": true
+        "no-underscore-dangle": [
+            "error",
+            {
+                "allow": [
+                    "__"
+                ]
+            }
+        ],
+        "no-nested-ternary": "off",
+        "valid-jsdoc": [
+            "error",
+            {
+                "requireReturn": false,
+                "requireReturnType": true,
+                "requireParamDescription": false,
+                "requireReturnDescription": true
+            }
+        ],
+        "require-jsdoc": [
+            "error",
+            {
+                "require": {
+                    "FunctionDeclaration": true,
+                    "MethodDefinition": true,
+                    "ClassDeclaration": true
+                }
+            }
+        ]
+    }
 }

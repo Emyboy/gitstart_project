@@ -12,7 +12,7 @@ describe('Testing auth routes', () => {
     })
     it('should send working from AUTH', done => {
         chai.request(app).get(process.env.BASE_ROUTE+'/auth').end((err, res) => {
-            console.log(res.BODY);
+            // console.log(res.BODY);
             done();
         })
     })

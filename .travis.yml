@@ -24,3 +24,5 @@ before_script:
 script:
   - npm test
 after_success: npm run coverage
+env:
+  - TEST_DATABASE_URL=postgres://gxseevldkixzvu:ec289ed5c184191f429d04707d970bd6a1e8f9bf4cfd486fc8e3f1a994771974@ec2-3-95-87-221.compute-1.amazonaws.com:5432/dbbn31all8t9po

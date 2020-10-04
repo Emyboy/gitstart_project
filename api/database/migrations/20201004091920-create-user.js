@@ -8,29 +8,33 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
-        type: Sequelize.STRING(15),
-        allowNull: false,
-        unique: true
-      },
       firstName: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(20),
         allowNull: false
       },
       lastName: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(20),
         allowNull: false
       },
       email: {
-        type: Sequelize.STRING(40),
+        type: Sequelize.STRING(30),
         allowNull: false,
         unique: true,
         validate: {
           isEmail: true
         }
       },
+      username: {
+        type: Sequelize.STRING(15),
+        allowNull: false,
+        unique: true
+      },
       password: {
-        type: Sequelize.STRING(90),
+        type: Sequelize.STRING(999),
+        allowNull: false
+      },
+      gender: {
+        type: Sequelize.STRING(10),
         allowNull: false
       },
       date_of_birth: {
@@ -44,14 +48,6 @@ module.exports = {
         },
         defaultValue: 'https://icons-for-free.com/iconfiles/png/512/avatar+human+male+man+men+people+person+profile+user+users-1320196163635839021.png'
       },
-      followrs: {
-        type: Sequelize.INTEGER(),
-        defaultValue: 0,
-      },
-      following: {
-        type: Sequelize.INTEGER(),
-        defaultValue: 0,
-      },
       about: {
         type: Sequelize.STRING(140),
         allowNull: true
@@ -63,7 +59,7 @@ module.exports = {
           isUrl: true
         }
       },
-      genter: {
+      gender: {
         type: Sequelize.STRING(7),
         allowNull: false
       },

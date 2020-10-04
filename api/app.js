@@ -2,14 +2,18 @@ import express from 'express';
 import indexRoute from './routes/index';
 import cors from 'cors';
 import bodyparser from 'body-parser';
+import swagger from './swagger';
+import volleyball from 'volleyball';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+app.use(volleyball)
 app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use("/api/v1", indexRoute);
+app.use('/api/v1/docs', swagger);
 
 app.get("/api", (req, res) => {
   // res.sendfile(path.join(__dirname, "/", "../../build/index.html"));

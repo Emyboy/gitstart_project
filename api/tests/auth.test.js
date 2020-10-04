@@ -22,7 +22,7 @@ describe('Testing auth routes', () => {
     })
     it('should send working from AUTH', done => {
         chai.request(app).post(process.env.BASE_ROUTE+'/auth').send(mockUser).end((err, res) => {
-            console.log(res.body);
+            console.log('res ----', res);
             expect(res.status).to.equal(201);
             expect(res.body).to.be.an('object');
             expect(res.body).to.have.property('data');

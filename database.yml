@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: gxseevldkixzvu_development
+  username: gxseevldkixzvu
+  password:
+  template: template0 # Required for UTF8 encoding

@@ -25,9 +25,7 @@ export default class AuthController {
       date_of_birth
     } = req.body;
     try {
-
       // console.log(db);
-
       const user = await db.User.findOne({
         where: { email }
       });

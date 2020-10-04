@@ -19,3 +19,4 @@ describe('Testing auth routes', () => {
 
 })
 
+module.exports = db;

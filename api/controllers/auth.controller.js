@@ -24,6 +24,7 @@ export default class AuthController {
       gender,
       date_of_birth
     } = req.body;
+    console.log(req.body);
     try {
       // console.log(db);
       const user = await db.User.findOne({

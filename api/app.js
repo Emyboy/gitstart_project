@@ -10,8 +10,8 @@ const app = express();
 
 app.use(volleyball)
 app.use(cors());
-app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
 app.use("/api/v1", indexRoute);
 app.use('/api/v1/docs', swagger);
 

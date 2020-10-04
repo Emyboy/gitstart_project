@@ -17,9 +17,9 @@ const mockUser = {
 }
 
 describe('Testing auth routes', () => {
-    afterEach(done => {
-        done();
-    })
+    // afterEach(done => {
+    //     done();
+    // })
     it('should send working from AUTH', done => {
         chai.request(app).post(process.env.BASE_ROUTE+'/auth').send(mockUser).end((err, res) => {
             console.log('res ----', res);

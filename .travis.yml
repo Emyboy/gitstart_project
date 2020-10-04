@@ -10,8 +10,8 @@ services:
 install:
   - npm install
 
-before_script:
-  - psql -c "CREATE USER gitstart WITH PASSWORD 'gitstart';" -U postgres
+# before_script:
+#   - psql -c "CREATE USER gitstart WITH PASSWORD 'gitstart';" -U postgres
 
 development:
   adapter: postgresql

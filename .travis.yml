@@ -10,6 +10,9 @@ services:
 install:
   - npm install
 
+before_script:
+  - psql -c "CREATE USER gitstart WITH PASSWORD 'gitstart';" -U postgres
+
 env:
   global:
   - NODE_ENV=test

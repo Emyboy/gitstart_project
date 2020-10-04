@@ -13,6 +13,14 @@ install:
 before_script:
   - psql -c "CREATE USER gitstart WITH PASSWORD 'gitstart';" -U postgres
 
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: gitstart_development
+  username: gitstart
+  password:
+  template: template0
+
 env:
   global:
   - NODE_ENV=test

@@ -9,7 +9,6 @@ services:
 
 install:
   - npm install
-  - npm install body-parser
 
 before_script:
   - psql -c "CREATE USER gitstart WITH PASSWORD 'gitstart';" -U postgres

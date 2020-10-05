@@ -9,7 +9,7 @@ export default class ResponseHandler {
      * @param {number} status 
      */
     static sendResponse(res, data, status, error) {
-        res.status(status).json({ data, error });
+        res.status(status).json({ ...data, error });
     }
 
 }

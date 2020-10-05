@@ -26,15 +26,14 @@ describe('Testing auth routes', () => {
             .end((err, res) => {
                 expect(res.status).to.equal(201);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('data');
-                expect(res.body.data).to.be.an('object');
-                expect(res.body.data).to.have.property('message');
-                expect(res.body.data.message).to.be.a('string');
-                expect(res.body.data.message).to.equal('Signed Up');
-                expect(res.body.data).to.have.property('newUser');
-                expect(res.body.data.newUser).to.have.property('username');
-                expect(res.body.data).to.have.property('token');
-                expect(res.body.data.token).to.be.a('string');
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('message');
+                expect(res.body.message).to.be.a('string');
+                expect(res.body.message).to.equal('Signed Up');
+                expect(res.body).to.have.property('newUser');
+                expect(res.body.newUser).to.have.property('username');
+                expect(res.body).to.have.property('token');
+                expect(res.body.token).to.be.a('string');
                 done();
             })
     });
@@ -44,14 +43,36 @@ describe('Testing auth routes', () => {
             .end((err, res) => {
                 expect(res.status).to.equal(409);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('data');
-                expect(res.body.data).to.be.an('object');
-                expect(res.body.data).to.have.property('message');
-                expect(res.body.data.message).to.be.a('string');
-                expect(res.body.data.message).to.equal('Email already exist')
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('message');
+                expect(res.body.message).to.be.a('string');
+                expect(res.body.message).to.equal('Email already exist')
                 done();
             })
     });
+
+    it('should log a user in each time', done => {
+        chai.request(app).post(process.env.BASE_ROUTE + '/auth/login').send(mockUser).end((err, res) => {
+            expect(res.status).to.equal(200);
+            expect(res.body).to.be.an('object');
+            expect(res.body).to.have.property('user');
+            expect(res.body.user).to.have.property('id');
+            expect(res.body).to.have.property('token');
+            expect(res.body).to.have.property('token')
+            expect(res.body.token).to.be.a('string');
+            done();
+        })
+    })
+
+    it('should return user not found', done => {
+        chai.request(app).post(process.env.BASE_ROUTE + '/auth/login').send({ ...mockUser, email: 'wrong@email.com' }).end((err, res) => {
+            expect(res.status).to.equal(404);
+            expect(res.body).to.be.an('object');
+            expect(res.body).to.have.property('message');
+            expect(res.body.message).to.equal('not found');
+            done();
+        })
+    })
 
 })
 

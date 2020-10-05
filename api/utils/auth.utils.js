@@ -23,3 +23,12 @@ export const generateToken = (userId, email ) => {
     return token;
 };
 
+/**
+ * @description - Compare plane text password with hash
+ * @param {string} password 
+ * @param {string} userPassword 
+ */
+export const comparePassword = (password, userPassword) => {
+    return bcrypt.compareSync(password, userPassword);
+}
+

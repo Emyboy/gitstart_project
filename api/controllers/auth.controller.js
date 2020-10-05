@@ -1,6 +1,6 @@
 import db from '../database/models';
 import response from '../utils/responseHandler.utils';
-import { generateToken, hashPassword } from '../utils/auth.utils';
+import { generateToken, hashPassword, comparePassword } from '../utils/auth.utils';
 
 const { sendResponse } = response;
 
@@ -14,7 +14,6 @@ export default class AuthController {
      * @param {object} res
      */
   static async registerUser(req, res) {
-    console.log(req.body);
     const {
       username,
       firstName,
@@ -24,9 +23,7 @@ export default class AuthController {
       gender,
       date_of_birth
     } = req.body;
-    console.log(req.body);
     try {
-      // console.log(db);
       const user = await db.User.findOne({
         where: { email }
       });
@@ -55,8 +52,37 @@ export default class AuthController {
       }
     } catch (error) {
       sendResponse(res, { message: 'error' }, 400, error);
-      // console.log(error);
+    }
+  }
+
+  /**
+   * @description - This login a user in each time
+   * @param {object} req 
+   * @param {object} res 
+   */
+  static async loginUser(req, res) {
+    try {
+      const {
+        email,
+        password
+      } = req.body;
+      const user = await db.User.findOne({
+        where: { email }
+      });
+      if (user) {
+        if (comparePassword(password, user.password)) {
+          sendResponse(res, {
+            user,
+            token: generateToken(user.id, email)
+          }, 200);
+        }
+      } else {
+        sendResponse(res, { message: 'not found' }, 404);
+      }
+    } catch (error) {
+      sendResponse(res, {}, 500, error);
     }
 
   }
+
 }

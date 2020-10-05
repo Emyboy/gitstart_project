@@ -51,7 +51,7 @@ export default class AuthController {
         }, 201);
       }
     } catch (error) {
-      sendResponse(res, { message: 'error' }, 400, error);
+      sendResponse(res, { message: 'error' }, 400, { error: 'error' });
     }
   }
 
@@ -80,9 +80,95 @@ export default class AuthController {
         sendResponse(res, { message: 'not found' }, 404);
       }
     } catch (error) {
-      sendResponse(res, {}, 500, error);
+      sendResponse(res, {}, 500, { message: 'error' });
     }
 
+  }
+
+  /**
+   * @description - This gets a user by id
+   * @param {object} req 
+   * @param {object} res 
+   */
+  static async getUserById(req, res) {
+    try {
+      const { user_id } = req.params;
+      const user = await db.User.findOne({
+        where: { id: user_id }
+      });
+
+      if (user) {
+        delete user.password;
+        sendResponse(res, { user }, 200);
+      } else {
+        sendResponse(res, { message: 'not found' }, 404);
+      }
+    } catch (error) {
+      sendResponse(res, error, 500, { message: 'error' });
+    }
+  };
+
+  /**
+   * @description - This gets user by username
+   * @param {object} req 
+   * @param {object} res 
+   */
+  static async getUserByUsername(req, res) {
+    try {
+      const { username } = req.params;
+      const user = await db.User.findOne({
+        where: { username }
+      });
+
+      if (user) {
+        delete user.password;
+        sendResponse(res, { user }, 200);
+      } else {
+        sendResponse(res, { message: 'not found' }, 404);
+      }
+    } catch (error) {
+      sendResponse(res, error, 500, { message: 'error' });
+    }
+  };
+
+
+  static async updateUserAccount(req, res) {
+    const { user_id } = req.params;
+    const {
+      username,
+      firstName,
+      lastName,
+      gender,
+      date_of_birth,
+      about,
+      banner_url,
+      avatar_url
+    } = req.body;
+
+    const updatedAccount = await db.User.update({
+      username,
+      firstName,
+      lastName,
+      gender,
+      date_of_birth,
+      about,
+      banner_url,
+      avatar_url
+    }, {
+      where: {
+        id: user_id
+      }
+    });
+    if (updatedAccount[0] === 1) {
+      const user = await db.User.findOne({
+        where: {
+          id: user_id
+        }
+      });
+      sendResponse(res, { user }, 200);
+    } else {
+      sendResponse(res, { message: 'bad request' }, 400);
+    }
   }
 
 }

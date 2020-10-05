@@ -72,7 +72,43 @@ describe('Testing auth routes', () => {
             expect(res.body.message).to.equal('not found');
             done();
         })
-    })
+    });
+
+    it('should get a user by id each time', done => {
+        chai.request(app).get(process.env.BASE_ROUTE + '/auth/1').end((err, res) => {
+            expect(res.status).to.equal(200);
+            expect(res.body).to.have.property('user');
+            expect(res.body.user).to.be.an('object');
+            expect(res.body.user).have.property('username');
+            expect(res.body.user.username).to.equal(mockUser.username);
+            done();
+        })
+    });
+
+    it('should return user not found', done => {
+        chai.request(app).get(process.env.BASE_ROUTE + '/auth/12').end((err, res) => {
+            expect(res.status).to.equal(404);
+            done();
+        })
+    });
+
+    it('should get a user by username each time', done => {
+        chai.request(app).get(process.env.BASE_ROUTE + '/user/' + mockUser.username).end((err, res) => {
+            expect(res.status).to.equal(200);
+            expect(res.body).to.have.property('user');
+            expect(res.body.user).to.be.an('object');
+            expect(res.body.user).have.property('username');
+            expect(res.body.user.username).to.equal(mockUser.username);
+            done();
+        })
+    });
+
+    it('should return user not found', done => {
+        chai.request(app).get(process.env.BASE_ROUTE + '/user/' + 'fake_user').end((err, res) => {
+            expect(res.status).to.equal(404);
+            done();
+        })
+    });
 
 })
 

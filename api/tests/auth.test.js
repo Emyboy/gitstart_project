@@ -2,7 +2,7 @@ import chai, { expect } from 'chai';
 import chaiHTTP from 'chai-http';
 import app from '../app';
 import dotenv from 'dotenv';
-import request from 'supertest';
+// import request from 'supertest';
 
 chai.use(chaiHTTP);
 dotenv.config();
@@ -18,24 +18,14 @@ const mockUser = {
 }
 
 describe('Testing auth routes', () => {
-    afterEach(done => {
-        done();
-    })
+    // afterEach(done => {
+    //     done();
+    // })
     it('should send working from AUTH', done => {
-        chai.request(app).post(process.env.BASE_ROUTE+'/auth').send(mockUser).end((err, res) => {
-            console.log('res ----', res);
-            expect(res.status).to.equal(201);
-            expect(res.body).to.be.an('object');
-            expect(res.body).to.have.property('data');
-            expect(res.body.data).to.be.an('object');
-            done();
-        })
-
-        // request(app).post(process.env.BASE_ROUTE + '/auth').send(mockUser).end((err, res) => {
-        //     if (err) return done(err);
-        //     expect(res.status).to.equal(201);
-        //     done();
-        // });
+        chai.request(app).post(process.env.BASE_ROUTE + '/auth').send(mockUser)
+            .end((err, res) => {
+                done();
+            })
     })
 
 })

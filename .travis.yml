@@ -3,29 +3,30 @@ node_js:
   - "stable"
 notifications:
   email: false
-  
+
+addons:
+  postgresql: "10"
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
+env:
+  global:
+  - PGPORT=5432
+
 services:
   - postgresql
 
 install:
   - npm install
 
-# before_script:
-#   - psql -c "CREATE USER gitstart WITH PASSWORD 'gitstart';" -U postgres
-
-# development:
-#   adapter: postgresql
-#   encoding: utf8
-#   database: gitstart_development
-#   username: gitstart
-#   password:
-#   template: template0
-
 env:
   global:
   - NODE_ENV=test
 
 before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
   - npm add sequelize-cli
 
 script:

@@ -110,5 +110,18 @@ describe('Testing auth routes', () => {
         })
     });
 
+    it('should update user account each time', done => {
+        chai.request(app).put(process.env.BASE_ROUTE + '/user/1').send({
+            username: 'update',
+            about: 'is this all about me'
+        }).end((err, res) => {
+            expect(res.status).to.equal(200);
+            expect(res.body).to.have.property('user');
+            expect(res.body.user.username).to.equal('update');
+            expect(res.body.user.about).to.equal('is this all about me');
+            done();
+        })
+    })
+
 })
 

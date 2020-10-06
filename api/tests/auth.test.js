@@ -3,19 +3,13 @@ import chaiHTTP from 'chai-http';
 import app from '../app';
 import dotenv from 'dotenv';
 // import request from 'supertest';
+import { generateToken } from '../utils/auth.utils';
+import { mockUser } from '../__mock__/_mock_';
 
 chai.use(chaiHTTP);
 dotenv.config();
 
-const mockUser = {
-    username: 'username',
-    firstName: 'first name',
-    lastName: 'last name',
-    email: 'test@gmail.com',
-    password: 'password',
-    gender: 'male',
-    date_of_birth: '12-02-2020'
-}
+const token = generateToken(1, mockUser.email);
 
 describe('Testing auth routes', () => {
     // afterEach(done => {
@@ -111,7 +105,7 @@ describe('Testing auth routes', () => {
     });
 
     it('should update user account each time', done => {
-        chai.request(app).put(process.env.BASE_ROUTE + '/user/1').send({
+        chai.request(app).put(process.env.BASE_ROUTE + '/user/1').set('token', token).send({
             username: 'update',
             about: 'is this all about me'
         }).end((err, res) => {

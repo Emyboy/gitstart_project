@@ -42,7 +42,7 @@ export default class AuthController {
           email,
           password: hashPassword(password)
         });
-        const token = generateToken(user, email);
+        const token = generateToken(newUser.id, email);
         // TODO: Send Welcome email
         sendResponse(res, {
           message: 'Signed Up',
@@ -132,6 +132,11 @@ export default class AuthController {
   };
 
 
+  /**
+   * @description - This update a user's account
+   * @param {object} req 
+   * @param {object} res 
+   */
   static async updateUserAccount(req, res) {
     const { user_id } = req.params;
     const {

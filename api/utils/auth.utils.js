@@ -32,3 +32,9 @@ export const comparePassword = (password, userPassword) => {
     return bcrypt.compareSync(password, userPassword);
 }
 
+/**
+ * @description - verify auth token
+ * @param {string} token 
+ */
+export const verifyToken = token => jwt.verify(token, process.env.PASSWORD);
+

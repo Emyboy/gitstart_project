@@ -51,7 +51,7 @@ export default class AuthController {
         }, 201);
       }
     } catch (error) {
-      sendResponse(res, { message: 'error' }, 400, { error: 'error' });
+      sendResponse(res, { message: 'error' }, 400, { error });
     }
   }
 

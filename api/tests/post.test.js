@@ -40,6 +40,15 @@ describe('testing post endpoints', () => {
             expect(res.body.updatedPost).to.have.property('caption');
             done();
         })
+    });
+
+    it('should return bad request', done => {
+        chai.request(app).delete(process.env.BASE_ROUTE + '/post/1/203').set('token', token).end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body).to.have.property('message');
+            expect(res.body.message).to.equal('bad request');
+            done();
+        })
     })
 
 });

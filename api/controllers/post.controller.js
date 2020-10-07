@@ -69,6 +69,30 @@ export default class PostController {
         } catch (error) {
             ResponseHandler.sendResponse(res, { message: 'error' }, 500);
         }
+    };
+
+    /**
+     * @description - This deletes a user's post
+     * @param {object} req 
+     * @param {object} res 
+     */
+    static async deleteAPost(req, res){
+        try {
+            const { user_id, post_id } = req.params;
+            const deletedPost = await db.Post.destroy({
+                where: {
+                    id: post_id,
+                    user_id
+                }
+            });
+            if (deletedPost > 0) {
+                ResponseHandler.sendResponse(res, { message: 'deleted' }, 202);
+            } else {
+                ResponseHandler.sendResponse(res, { message: 'bad request' }, 400);
+            }
+        } catch (error) {
+            ResponseHandler.sendResponse(res, { message: 'error' }, 500);
+        }
     }
 
 }

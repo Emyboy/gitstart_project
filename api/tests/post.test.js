@@ -49,6 +49,15 @@ describe('testing post endpoints', () => {
             expect(res.body.message).to.equal('bad request');
             done();
         })
+    });
+
+    it('should delete a post each time', done => {
+        chai.request(app).delete(process.env.BASE_ROUTE + '/post/1/1').set('token', token).end((err, res) => {
+            expect(res.status).to.equal(202);
+            expect(res.body).to.have.property('message');
+            expect(res.body.message).to.equal('deleted');
+            done();
+        })
     })
 
 });

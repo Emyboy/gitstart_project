@@ -2,6 +2,7 @@
 
 
 [] - when deleting posts also delete comments, likes and notifications
+[] - validate user's input on the server
 
 
 ### gitstart_project

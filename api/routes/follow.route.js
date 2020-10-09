@@ -6,7 +6,8 @@ const followRoute = express.Router();
 
 const {
     follow,
-    unFollow
+    unFollow,
+    getUsersFollowers
 } = FollowController;
 const {
     validateAuthHeader
@@ -14,5 +15,6 @@ const {
 
 followRoute.post('/follow/:following/:follower/:user_id', validateAuthHeader, follow);
 followRoute.put('/unfollow/:following/:follower/:user_id', validateAuthHeader, unFollow);
+followRoute.get('/followers/:user_id', getUsersFollowers);
 
 export default followRoute;

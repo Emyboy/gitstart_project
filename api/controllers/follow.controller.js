@@ -30,6 +30,7 @@ export default class FollowController {
                     user_id
                 });
                 if (followed) {
+                    // TODO - Send notification
                     ResponseHandler.sendResponse(res, { followed }, 201);
                 } else {
                     ResponseHandler.sendResponse(res, { message: 'bad request' }, 400);
@@ -59,6 +60,29 @@ export default class FollowController {
             if(unFollowed > 0){
                 ResponseHandler.sendResponse(res, { message: 'unfollowed' }, 200);
             }else {
+                ResponseHandler.sendResponse(res, { message: 'bad request' }, 400);
+            }
+        } catch (error) {
+            ResponseHandler.sendResponse(res, { message: 'error' }, 500);
+        }
+    };
+
+
+    /**
+     * @description - This get a user's followers
+     * @param {object} req 
+     * @param {object} res 
+     */
+    static async getUsersFollowers(req, res){
+        try {
+            const { user_id } = req.params;
+            const followers = await db.Follow.findAll({
+                where: { following: user_id }
+            });
+
+            if (followers) {
+                ResponseHandler.sendResponse(res, { followers, count: followers.length }, 200);
+            } else {
                 ResponseHandler.sendResponse(res, { message: 'bad request' }, 400);
             }
         } catch (error) {

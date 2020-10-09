@@ -25,6 +25,19 @@ describe('testing follow and unfollow routes', () => {
     it('should unfollow a user each time', done => {
         chai.request(app).put(process.env.BASE_ROUTE + '/unfollow/1/1/1').set('token', token).end((err, res) => {
             expect(res.status).to.equal(200);
+            expect(res.body).to.have.property('message');
+            expect(res.body.message).to.equal('unfollowed');
+            done();
+        })
+    });
+
+    it('should get all users followers', done => {
+        chai.request(app).get(process.env.BASE_ROUTE + '/followers/1').end((err, res) => {
+            expect(res.status).to.equal(200);
+            expect(res.body).to.have.property('followers');
+            expect(res.body.followers).to.be.an('array');
+            expect(res.body).to.have.property('count');
+            expect(res.body.count).to.be.a('number');
             done();
         })
     })

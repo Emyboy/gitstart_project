@@ -95,5 +95,7 @@ export default class PostController {
         }
     }
 
+    // TODO - get and sort following posts max of
+
 }
 

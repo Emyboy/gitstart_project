@@ -14,3 +14,10 @@ export const postMock = {
     image: 'www.google.com',
     user_id: 1
 };
+
+export const mockFollow = {
+    follower: 1,
+    following: 1,
+    user_id: 1
+}
+

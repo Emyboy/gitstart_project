@@ -57,6 +57,8 @@ export default class FollowController {
                 }
             });
 
+            console.log('UNFOLLOW ----', unFollowed)
+
             if(unFollowed > 0){
                 ResponseHandler.sendResponse(res, { message: 'unfollowed' }, 200);
             }else {

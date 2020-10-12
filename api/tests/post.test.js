@@ -2,23 +2,23 @@ import chai, { expect } from 'chai';
 import chaiHTTP from 'chai-http';
 import app from '../app';
 import { generateToken } from '../utils/auth.utils';
-import { postMock } from '../__mock__/_mock_';
+import { mockUser, postMock } from '../__mock__/_mock_';
 
 chai.use(chaiHTTP);
-const token = generateToken(1,)
+const token = generateToken(1, mockUser)
 
 describe('testing post endpoints', () => {
 
-    it('should return bad requst 400', done => {
-        chai.request(app).post(process.env.BASE_ROUTE + '/post/1').set('token', token)
-            .send({}).end((err, res) => {
-                expect(res.status).to.equal(400);
-                expect(res.body).to.have.property('message');
-                expect(res.body.message).to.be.a('string');
-                expect(res.body.message).to.equal('bad reqest');
-                done();
-            })
-    })
+    // it('should return bad requst 400', done => {
+    //     chai.request(app).post(process.env.BASE_ROUTE + '/post/1').set('token', token)
+    //         .send({}).end((err, res) => {
+    //             expect(res.status).to.equal(400);
+    //             expect(res.body).to.have.property('message');
+    //             expect(res.body.message).to.be.a('string');
+    //             expect(res.body.message).to.equal('bad reqest');
+    //         })
+    //         done();
+    // })
 
     it('should make a post each time', done => {
         chai.request(app).post(process.env.BASE_ROUTE + '/post/1').set('token', token)
@@ -58,8 +58,8 @@ describe('testing post endpoints', () => {
             expect(res.body.message).to.equal('deleted');
             done();
         })
-    })
-
+    });
+    
 });
 
 

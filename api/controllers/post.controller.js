@@ -1,6 +1,6 @@
 import db from '../database/models';
 import ResponseHandler from '../utils/responseHandler.utils';
-
+const { Op } = require('sequelize');
 
 /**
  * @description - This class handles post requests
@@ -95,7 +95,29 @@ export default class PostController {
         }
     }
 
+    static async searchPost(req, res){
+        const { key_word } = req.params;
+        const wordList = key_word.split(" ");
+
+        console.log('searching for ---', wordList);
+        try {
+            const posts = await db.Post.findAll({
+                where: {
+                    caption: {
+                        [Op.like]: `%${key_word}%`
+                        // [Op.like]: { [Op.any]: wordList}
+                    }
+                }
+            })
+            res.json(posts);
+        } catch (error) {
+            res.json(error);
+        }
+    }
+
     // TODO - get and sort following posts max of
+    
+
 
 }
 

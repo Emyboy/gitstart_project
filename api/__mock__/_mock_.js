@@ -21,3 +21,9 @@ export const mockFollow = {
     user_id: 1
 }
 
+export const commentMock = {
+    user_id: 1,
+    post_id: 1,
+    comment: 'this is my mock comment'
+}
+

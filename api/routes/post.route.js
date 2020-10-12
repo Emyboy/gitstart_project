@@ -7,7 +7,8 @@ const postRoute = express.Router();
 const {
     createPost,
     updatePost,
-    deleteAPost
+    deleteAPost,
+    searchPost
 } = PostController;
 const {
     validateAuthHeader
@@ -16,5 +17,6 @@ const {
 postRoute.post('/post/:user_id', validateAuthHeader, createPost);
 postRoute.put('/post/:user_id/:post_id', validateAuthHeader, updatePost);
 postRoute.delete('/post/:user_id/:post_id', validateAuthHeader, deleteAPost);
+postRoute.get('/post/search/:key_word', searchPost);
 
 export default postRoute;

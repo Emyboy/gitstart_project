@@ -95,6 +95,11 @@ export default class PostController {
         }
     }
 
+    /**
+     * @description - This handles blog search
+     * @param {object} req 
+     * @param {object} res 
+     */
     static async searchPost(req, res){
         const { key_word } = req.params;
         const wordList = key_word.split(" ");

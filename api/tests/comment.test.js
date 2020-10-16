@@ -32,7 +32,31 @@ describe('testing comment routes', () => {
             expect(res.body.updatedComment.comment).to.equal('i changed the comment')
             done();
         })
+    });
+
+    it('should get all post comment', done => {
+        chai.request(app).get(process.env.BASE_ROUTE + '/comment/1').end((err, res) => {
+            expect(res.body).to.have.property('comments');
+            expect(res.body.comments).to.be.an('array');
+            done();
+        })
     })
+
+    it("it should delete comment each time", done => {
+        chai.request(app).delete(process.env.BASE_ROUTE + '/comment').set('token', token)
+            .send({
+                comment_id: 1,
+                user_id: 1,
+                post_id: 1
+             }).end((err, res) => {
+                expect(res.body).to.have.property('message');
+                expect(res.status).to.equal(200);
+                expect(res.body.message).to.equal('deleted');
+                done();
+             })
+    });
+
+    
     
 })
 

@@ -23,6 +23,7 @@ export default class AuthController {
       gender,
       date_of_birth
     } = req.body;
+    console.log(req.body);
     try {
       const user = await db.User.findOne({
         where: { email }
@@ -51,6 +52,7 @@ export default class AuthController {
         }, 201);
       }
     } catch (error) {
+      console.log(error);
       sendResponse(res, { message: 'error' }, 400, { error });
     }
   }
@@ -61,6 +63,7 @@ export default class AuthController {
    * @param {object} res 
    */
   static async loginUser(req, res) {
+    console.log('logging in ----', req.body);
     try {
       const {
         email,
@@ -69,17 +72,22 @@ export default class AuthController {
       const user = await db.User.findOne({
         where: { email }
       });
+      const ownsPassword = comparePassword(password, user.password);
+      console.log('owns password --', ownsPassword);
       if (user) {
-        if (comparePassword(password, user.password)) {
+        if (ownsPassword) {
           sendResponse(res, {
             user,
             token: generateToken(user.id, email)
           }, 200);
+          console.log('got -- user');
         }
       } else {
         sendResponse(res, { message: 'not found' }, 404);
+        console.log('no user --');
       }
     } catch (error) {
+      console.log('error ---', error);
       sendResponse(res, {}, 500, { message: 'error' });
     }
 

@@ -29,6 +29,9 @@ export const generateToken = (userId, email ) => {
  * @param {string} userPassword 
  */
 export const comparePassword = (password, userPassword) => {
+    console.log('Comparing --', {
+        password, userPassword
+    })
     return bcrypt.compareSync(password, userPassword);
 }
 

@@ -21,7 +21,7 @@ export default class AuthController {
       email,
       password,
       gender,
-      date_of_birth
+      // date_of_birth
     } = req.body;
     console.log(req.body);
     try {
@@ -39,7 +39,7 @@ export default class AuthController {
           lastName,
           username,
           gender,
-          date_of_birth,
+          // date_of_birth,
           email,
           password: hashPassword(password)
         });
@@ -63,7 +63,6 @@ export default class AuthController {
    * @param {object} res 
    */
   static async loginUser(req, res) {
-    console.log('logging in ----', req.body);
     try {
       const {
         email,
@@ -72,9 +71,11 @@ export default class AuthController {
       const user = await db.User.findOne({
         where: { email }
       });
-      const ownsPassword = comparePassword(password, user.password);
-      console.log('owns password --', ownsPassword);
+      console.log('logging in ----', req.body);
+      console.log('found user', user);
       if (user) {
+        const ownsPassword = comparePassword(req.body.password, user.password);
+        console.log('owns password --', ownsPassword);
         if (ownsPassword) {
           sendResponse(res, {
             user,

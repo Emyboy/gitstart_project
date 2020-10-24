@@ -39,7 +39,7 @@ module.exports = {
       },
       date_of_birth: {
         type: Sequelize.STRING(20),
-        allowNull: false
+        // allowNull: false
       },
       avatar_url: {
         type: Sequelize.STRING(999),

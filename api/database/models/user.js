@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     date_of_birth: {
       type: DataTypes.STRING(20),
-      allowNull: false
+      // allowNull: false
     },
     avatar_url: {
       type: DataTypes.STRING(999),

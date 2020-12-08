@@ -1,7 +1,7 @@
-# backend_dir: &backend_dir
-#   run:
-#     name: Change into backend directory
-#     command: cd $HOME/forum/server
+backend_dir: &backend_dir
+  run:
+    name: Change into backend directory
+    command: cd $HOME/gitstart
 
 default_image: &default_image
   docker:
@@ -22,8 +22,8 @@ jobs: # a collection of steps
     <<: *default_image
     working_directory: ~/gitstart
     steps: # a collection of executable commands
-      # - checkout
-      # - *backend_dir # special step to check out source code to working directory
+      - checkout
+      - *backend_dir # special step to check out source code to working directory
       - run:
           name: Install project dependencies
           command: |

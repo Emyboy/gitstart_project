@@ -13,6 +13,7 @@ export default class PostController {
      * @param {object} res 
      */
     static async createPost(req, res) {
+        console.log('adding ---', res.body);
         try {
             const { user_id } = req.params;
             const {

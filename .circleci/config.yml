@@ -28,7 +28,7 @@ jobs: # a collection of steps
       - run:
           name: Install project dependencies
           command: |
-            sudo npm install -g npm@latest && npm install && npm i bcrypt@3.0.0
+            sudo npm install -g npm@latest && npm install
       - restore_cache: 
           key: dependency-cache-{{ checksum "package.json" }}
       - save_cache:

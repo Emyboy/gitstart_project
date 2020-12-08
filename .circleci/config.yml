@@ -12,6 +12,7 @@ default_image: &default_image
         TEST_DB_NAME: gitstart_test
         TEST_DB_HOST: localhost
         PASSWORD: gitstart
+        PORT: 8080
         # DB_PORT: 5432
         # DB_DIALECT: postgres
         # BEARER: Bearer

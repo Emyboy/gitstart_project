@@ -7,12 +7,12 @@ default_image: &default_image
   docker:
     - image: circleci/node:carbon # ...with this image as the primary container; this is where all `steps` will run
       environment:
-        DB_USER: postgres
-        DB_PASS: 6625
-        DB_NAME_TEST: gitstart_test
-        DB_HOST: localhost
-        DB_PORT: 5432
-        DB_DIALECT: postgres
+        TEST_DB_USERNAME: postgres
+        TEST_DB_PASSWORD: 6625
+        TEST_DB_NAME: gitstart_test
+        TEST_DB_HOST: localhost
+        # DB_PORT: 5432
+        # DB_DIALECT: postgres
         # BEARER: Bearer
     - image: circleci/postgres:9.6-alpine
 

@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "sequelize db:migrate && nodemon --exec babel-node api/app.js",
     "pretest": "cross-env NODE_ENV=test npm run db:reset",
-    "test": "npm run db:reset && npm run test:unit",
+    "test": "npm run test:unit",
     "db:reset": "sequelize db:migrate:undo:all --env test && npm run db:migrate --env test",
     "db:reset:dev": "sequelize db:migrate:undo:all --env development && npm run db:migrate --env development",
     "test:unit": "NODE_ENV=test nyc --require @babel/register  mocha --recursive './api/**/*.test.js' --timeout 2000 --exit",

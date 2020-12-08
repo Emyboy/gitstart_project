@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "sequelize db:migrate && nodemon --exec babel-node api/app.js",
+    "pretest": "cross-env NODE_ENV=test",
     "test": "npm run db:reset --env test && npm run db:migrate:test && npm run test:unit",
     "db:reset": "sequelize db:migrate:undo:all --env test && npm run db:migrate --env test",
     "db:reset:dev": "sequelize db:migrate:undo:all --env development && npm run db:migrate --env development",
@@ -40,6 +41,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "html-webpack-plugin": "^4.5.0",

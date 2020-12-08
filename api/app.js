@@ -8,7 +8,7 @@ import volleyball from 'volleyball';
 // console.log('moment -----', moment("2020-10-05T21:56:41.645Z").fromNow())
 
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(volleyball)

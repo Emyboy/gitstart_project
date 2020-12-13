@@ -37,6 +37,10 @@
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/polyfill": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
+<<<<<<< HEAD
+=======
+    "bcrypt": "^5.0.0",
+>>>>>>> old-stats
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
@@ -59,10 +63,7 @@
     "supertest": "^5.0.0",
     "swagger-jsdoc": "^4.2.0",
     "swagger-ui-express": "^4.1.4",
-    "volleyball": "^1.5.1",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "volleyball": "^1.5.1"
   },
   "devDependencies": {
     "eslint": "^7.10.0",

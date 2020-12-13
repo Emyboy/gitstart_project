@@ -34,6 +34,8 @@ export default class AuthController {
           message: 'Email already exist'
         }, 409);
       } else {
+        const passwordHash = hashPassword(password);
+        console.log('pw hash ---', passwordHash);
         const newUser = await db.User.create({
           firstName,
           lastName,
@@ -41,7 +43,7 @@ export default class AuthController {
           gender,
           // date_of_birth,
           email,
-          password: hashPassword(password)
+          password: passwordHash
         });
         const token = generateToken(newUser.id, email);
         // TODO: Send Welcome email
@@ -52,7 +54,7 @@ export default class AuthController {
         }, 201);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       sendResponse(res, { message: 'error' }, 400, { error });
     }
   }

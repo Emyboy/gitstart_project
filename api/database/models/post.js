@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     image: {
       type: DataTypes.STRING(999),
-      allowNull: false,
+      allowNull: true,
       validate: {
         isUrl: true
       }
